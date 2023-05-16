@@ -1,6 +1,7 @@
 package testcases;
 
 import java.io.FileInputStream;
+import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
@@ -10,7 +11,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 public class Testcase2 {
@@ -18,6 +25,20 @@ public class Testcase2 {
 	Logger log = Logger.getLogger(Testcase2.class.getName());
 
 	WebDriver driver;
+
+	Logger log = Logger.getLogger(Testcase2.class.getName());
+	@BeforeTest
+	public void reports() {
+		String path =System.getProperty("user.dir")+"\\reports\\index.html";
+		ExtentSparkReporter reporter =new ExtentSparkReporter(path);
+        reporter.config().setReportName("Web Automation Report ");
+        reporter.config().setDocumentTitle("Test Result");        
+        ExtentReports extent =new ExtentReports();
+        extent.attachReporter(reporter);
+        extent.setSystemInfo("Test", "Ganesh");
+        extent.createTest(path);
+	}
+	
 	@Test(priority=1)
 	public void openbrow() throws IOException {
 		FileInputStream path = new FileInputStream("D:\\Rupali\\Framework\\src\\main\\java\\resources\\data.properties");
@@ -30,18 +51,28 @@ public class Testcase2 {
 		  log.debug("opening webiste");
 		System.out.println(browser);
 
+		log.debug("opening webiste");
+		log.debug("opening webiste");
+		log.debug("opening webiste");
+		log.debug("opening webiste");
 		
 		if(browser.equals("Chrome")) {
-			System.setProperty("webdriver.chrome.driver", "D:\\AUtomation_software\\chromedriver_win32\\chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
+			
+			//System.setProperty("webdriver.chrome.driver", "D:\\AUtomation_software\\chromedriver_win32\\chromedriver.exe");
 			driver = new ChromeDriver();
 			driver.get(url);
 			driver.manage().window().maximize();
 			
 		}
 		else if(browser.equals("edge")) {
-			System.setProperty("webdriver.chrome.driver", "D:\\AUtomation_software\\chromedriver_win32\\chromedriver.exe");
+			
+			//System.setProperty("webdriver.chrome.driver", "D:\\AUtomation_software\\chromedriver_win32\\chromedriver.exe");
 			driver = new ChromeDriver();
 		}
+		log.info("Open browser");
+		log.info("Open browser");
+		log.info("Open browser");
 		
 	}
 	@Test(priority=2)
