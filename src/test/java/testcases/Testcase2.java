@@ -1,12 +1,10 @@
 package testcases;
 
 import java.io.FileInputStream;
-import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,11 +20,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Testcase2 {
 	Properties properties = new Properties();
-	Logger log = Logger.getLogger(Testcase2.class.getName());
+	//Logger log = Logger.getLogger(Testcase2.class.getName());
 
 	WebDriver driver;
 
-	Logger log = Logger.getLogger(Testcase2.class.getName());
 	@BeforeTest
 	public void reports() {
 		String path =System.getProperty("user.dir")+"\\reports\\index.html";
@@ -43,18 +40,14 @@ public class Testcase2 {
 	public void openbrow() throws IOException {
 		FileInputStream path = new FileInputStream("D:\\Rupali\\Framework\\src\\main\\java\\resources\\data.properties");
 		properties.load(path);
-		  log.debug("opening webiste");
+		 
 		String url = properties.getProperty("url");
-		  log.debug("opening webiste");
+		  
 		
 		String browser = properties.getProperty("browser");
-		  log.debug("opening webiste");
 		System.out.println(browser);
 
-		log.debug("opening webiste");
-		log.debug("opening webiste");
-		log.debug("opening webiste");
-		log.debug("opening webiste");
+	
 		
 		if(browser.equals("Chrome")) {
 			WebDriverManager.chromedriver().setup();
@@ -70,9 +63,7 @@ public class Testcase2 {
 			//System.setProperty("webdriver.chrome.driver", "D:\\AUtomation_software\\chromedriver_win32\\chromedriver.exe");
 			driver = new ChromeDriver();
 		}
-		log.info("Open browser");
-		log.info("Open browser");
-		log.info("Open browser");
+		
 		
 	}
 	@Test(priority=2)
